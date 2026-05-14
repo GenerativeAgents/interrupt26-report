@@ -18,16 +18,53 @@
 - LangChain チームによる hands-on workshops
 - builders 同士の交流、social hour、afterparty
 
-### スケジュール概要
+## タイムテーブル
 
-- Day 1: 2026年5月13日
-  - 8:00 AM: Registration
-  - 9:30 AM: LangChain Keynote
-  - 5:00 PM: Opening reception
-- Day 2: 2026年5月14日
-  - 9:00 AM: Registration
-  - 9:30 AM: Sessions
-  - 4:00 PM: Afterparty
+公式 agenda: https://interrupt.langchain.com/event-agenda
+
+### Day 1: 2026年5月13日
+
+| 時間 | セッション | 登壇者 |
+| --- | --- | --- |
+| 8:00 AM-9:30 AM | Registration, Breakfast & Sponsors | - |
+| 9:30 AM-10:30 AM | [Keynote](sessions/day1-keynote.md) | Harrison Chase, Ankush Gola |
+| 10:30 AM-10:50 AM | [Building Frontier CX Agents](sessions/building-frontier-cx-agents.md) | Carlos Pereira |
+| 10:50 AM-11:20 AM | Break | - |
+| 11:20 AM-11:40 AM | [Scaling GTM Agents](sessions/scaling-gtm-agents.md) | Jeff Barg |
+| 11:40 AM-12:00 PM | [The Production System for Agents](sessions/the-production-system-for-agents.md) | Kordel France, Ravi Chandu Ummadisetti |
+| 12:00 PM-12:20 PM | [How Lyft Builds Evals That Actually Matter in Production](sessions/how-lyft-builds-evals-that-actually-matter.md) | Nick Ung |
+| 12:20 PM-1:40 PM | Lunch | - |
+| 1:40 PM-2:00 PM | [Make Legal Write Your Evals](sessions/make-legal-write-your-evals.md) | Philipp Comans |
+| 2:00 PM-2:20 PM | [Introducing Managed Deep Agents](sessions/introducing-managed-deep-agents.md) | Sydney Runkle, Victor Moreira |
+| 2:20 PM-2:40 PM | [How We Built It](sessions/how-we-built-it.md) | Ben Tannyhill, Vivek Trivedy |
+| 2:40 PM-3:10 PM | Break | - |
+| 3:10 PM-3:30 PM | Building Deep Agent Sidekick | Omri Bruchim |
+| 3:30 PM-3:50 PM | Intelligent Agents in Aviation | Nico Venegas, Claudio Urbina Lara |
+| 3:50 PM-4:10 PM | Break | - |
+| 4:10 PM-4:40 PM | Agents in the Enterprise | Aaron Levie, Harrison Chase |
+| 4:40 PM-5:00 PM | Lessons Learned Building Rippling AI | Senthil Sundaram, Akash Ashok |
+| 5:00 PM | Day 1 Reception: Sponsored by Fireworks | - |
+
+### Day 2: 2026年5月14日
+
+| 時間 | セッション | 登壇者 |
+| --- | --- | --- |
+| 8:30 AM-9:30 AM | Registration, Breakfast & Sponsors | - |
+| 9:30 AM-10:00 AM | Keynote | Harrison Chase, Brace Sproul, Caroline di Vittorio |
+| 10:00 AM-10:20 AM | Observing and Testing CX Agents | Carlos Pereira |
+| 10:20 AM-10:50 AM | Break | - |
+| 10:50 AM-11:10 AM | The Etsy Gifting Assistant: From Prototype to Production | Derrick Kondo |
+| 11:10 AM-11:30 AM | 60% Faster Time-to-Interview: Transforming Hiring with AI Agents with LangChain | Shang Liu, Tracy He |
+| 11:30 AM-11:40 AM | Run Untrusted Agent Code with LangSmith Sandboxes | Mukil Loganathan |
+| 11:40 AM-1:00 PM | Lunch | - |
+| 1:00 PM-1:30 PM | Future of AI Agents | Andrew Ng, Harrison Chase |
+| 1:30 PM-2:00 PM | Agents in the Enterprise | Chirantan (CJ) Desai, Harrison Chase |
+| 2:00 PM-2:20 PM | Building AI for Healthcare | Janie Lee |
+| 2:20 PM-2:50 PM | Break | - |
+| 2:50 PM-3:10 PM | Building Pat, the AI Pocket Analyst Tool | Brendan McManus, Santi Weight, Michael Ran |
+| 3:10 PM-3:30 PM | Building Developer Support Agents | Evan Kormos |
+| 3:30 PM-4:00 PM | The Return of the Data Scientist | Shreya Shankar, Hamel Husain |
+| 4:00 PM | Day 2 Afterparty: Sponsored by Focused | - |
 
 ## リリーストピック
 
