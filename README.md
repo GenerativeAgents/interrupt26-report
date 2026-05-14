@@ -1,1 +1,149 @@
 # interrupt26-report
+
+## イベント情報
+
+- イベント名: Interrupt 2026 - The Agent Conference by LangChain
+- 開催日: 2026年5月13日-14日
+- 会場: The Midway, San Francisco
+- 住所: 900 Marin St., San Francisco, CA
+- 公式サイト: https://interrupt.langchain.com/
+- 概要: AI agents の次を形づくる実践者向けカンファレンス。プロダクション環境で agents を展開している業界リーダーやチームの知見、実装事例、ワークショップを通じて、agents の構築・トレース・評価について学ぶ。
+- 参加規模: 1,000人以上の practitioners が参加
+- チケット: Sold out
+
+### 主な内容
+
+- 業界リーダーによる keynotes
+- Clay、Rippling、Workday などの AI チームによる実運用の学び
+- LangChain チームによる hands-on workshops
+- builders 同士の交流、social hour、afterparty
+
+### スケジュール概要
+
+- Day 1: 2026年5月13日
+  - 8:00 AM: Registration
+  - 9:30 AM: LangChain Keynote
+  - 5:00 PM: Opening reception
+- Day 2: 2026年5月14日
+  - 9:00 AM: Registration
+  - 9:30 AM: Sessions
+  - 4:00 PM: Afterparty
+
+## リリーストピック
+
+- ✅ LangSmith Engine
+- ✅ SmithDB
+- ✅ Sandboxes
+- ✅ Managed Deep Agents
+- ✅ LLM Gateway
+- ✅ Context Hub
+- ✅ Deep Agents 0.6
+
+### LangSmith Engine
+
+LangSmith Engine は、LangSmith の trace を起点に agent の継続改善ループを回すための機能。繰り返し発生する失敗を検出し、原因を診断し、修正案・回帰防止用 evaluator・offline evaluation 用の dataset examples までつなげる。GitHub repository を接続すると、Deep Agents / LangChain / LangGraph で作られた agent に対して修正 PR の提案もできる。
+
+ポイント:
+
+- production traces から recurring issue を自動検出
+- root cause の診断、proposed fix、suggested evaluator を提示
+- 問題が再発した場合に issue を reopen する closed-loop 改善
+- trace から ground truth dataset examples を生成し、offline eval に接続
+
+参考:
+
+- https://docs.langchain.com/langsmith/engine
+
+### SmithDB
+
+SmithDB は、LangSmith の self-hosted changelog 上で確認できる LangSmith backend / data layer 側の新しい基盤要素。changelog では SmithDB-backed comparison view endpoints、SmithDB shadow、ClickHouse と SmithDB の dual-write / parallel write、SmithDB operations の async retry などが言及されている。ユーザー向けの単体ブログ記事は見つからなかったが、LangSmith の trace / dataset / comparison view 周辺をより高速・堅牢にするためのデータ基盤アップデートと読める。
+
+ポイント:
+
+- comparison view を SmithDB-backed endpoint として提供
+- ClickHouse ingestion と SmithDB dual-write / parallel write により ingestion latency を改善
+- SmithDB shadow による dataset view の filtering / querying を強化
+- SmithDB operation の async retry / error handling を追加
+
+参考:
+
+- https://docs.langchain.com/langsmith/self-hosted-changelog
+
+### Sandboxes
+
+LangSmith Sandboxes は、agent が生成・実行するコードを安全に動かすための ephemeral で locked-down な実行環境。LLM に任意コードを実行させる場合、local machine や本番 infrastructure に直接触らせるのは危険なので、sandbox 側で filesystem、network、resource usage、実行可能 binary などを制御する。LangSmith SDK から利用でき、LangSmith Deployment や Deep Agents とも統合される。
+
+ポイント:
+
+- agent-generated code を隔離環境で実行
+- CPU / memory / disk などの resource limits を管理
+- binary authorization で実行可能な program や到達可能 domain を制限
+- coding assistant、CI-style agent、data analysis agent などに有効
+
+参考:
+
+- https://www.langchain.com/blog/introducing-langsmith-sandboxes-secure-code-execution-for-agents
+
+### Managed Deep Agents
+
+Managed Deep Agents に相当する発表として、LangChain は `deepagents deploy` を beta として紹介している。これは Deep Agents harness を production-ready な server として立ち上げる仕組みで、model、instructions、tools、skills、sandboxes をまとめてデプロイできる。Claude Managed Agents との比較では、Deep Agents は open source / model-agnostic で、memory を標準形式で所有・照会できる点が強調されている。
+
+ポイント:
+
+- `deepagents deploy` で Deep Agents harness を production server 化
+- model、`AGENTS.md`、skills、MCP tools、sandbox をまとめて指定
+- horizontally scalable な server として運用する前提
+- proprietary harness に memory を lock-in しない設計
+
+参考:
+
+- https://www.langchain.com/blog/deep-agents-deploy-an-open-alternative-to-claude-managed-agents
+- https://www.langchain.com/blog/april-2026-langchain-newsletter
+
+### LLM Gateway
+
+LLM Gateway について、LangChain 公式 docs では LangSmith の LLM auth proxy が関連機能として確認できる。これは LangSmith と upstream LLM provider / internal gateway の間に置く Envoy-based component で、LangSmith からの model invocation に対して organization 側の認証・credential injection・request / response transformation を適用する。provider key を end user に露出せず、request を actor に traceable にするための enterprise 向け機能。
+
+ポイント:
+
+- LangSmith と OpenAI / Anthropic / internal LLM gateway などの間に配置
+- LangSmith-signed JWT を検証し、組織側の認証フローを適用
+- provider credentials を end user に露出せずに注入
+- OpenAI format と custom gateway format 間の変換にも利用可能
+
+参考:
+
+- https://docs.langchain.com/langsmith/llm-auth-proxy-self-hosted
+
+### Context Hub
+
+Context Hub は、production agent が使う instructions や tools を version-controlled / environment-aware に管理する LangSmith の機能。context は agent または skill の versioned bundle として扱われ、`AGENTS.md` や `SKILL.md`、tools などを commit history つきで管理できる。staging / production への promote により、agent が pull する context を安定化できる。
+
+ポイント:
+
+- agent / skill の instructions と tools を versioned bundle として管理
+- commit history により差分確認・rollback・tagging が可能
+- staging / production へ promote して環境ごとの context を固定
+- reusable skill を複数 agent から参照できる
+
+参考:
+
+- https://docs.langchain.com/langsmith/use-the-context-hub
+- https://docs.langchain.com/langsmith/context-engineering-concepts
+
+### Deep Agents 0.6
+
+Deep Agents は、長時間・複雑な task を扱う agent harness。LangChain blog では初期設計として planning tool、filesystem access、subagents、detailed prompts が核だと説明されており、0.2 では pluggable backend / composite backend による memory・filesystem 拡張が紹介された。PyPI release history では `deepagents` 0.6.0 が 2026年5月12日に公開され、翌日に 0.6.1 も公開されている。公式ブログで 0.6 専用の詳細記事は見つからなかったため、ここでは Deep Agents の方向性と release 状況を記録する。
+
+ポイント:
+
+- planning tool、filesystem、subagents、detailed prompts を備えた agent harness
+- pluggable backend により local filesystem、LangGraph Store、長期 memory などを扱いやすくする方向
+- Open models を Deep Agents SDK で利用する記事も公開され、model-agnostic な harness としての位置づけが強い
+- `deepagents` 0.6.0 は 2026年5月12日に PyPI で公開
+
+参考:
+
+- https://www.langchain.com/blog/doubling-down-on-deepagents
+- https://www.langchain.com/blog/open-models-have-crossed-a-threshold
+- https://pypi.org/project/deepagents/
