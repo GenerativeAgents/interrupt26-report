@@ -10,11 +10,17 @@
 
 つまり、AIエージェントは「完成品としてリリースするもの」というより、「リリース後に育て続けるもの」になっている。今回発表された LangSmith Engine、SmithDB、LangSmith Sandboxes、Managed Deep Agents、LLM Gateway、Context Hub、Deep Agents 0.6 は、まさにそのためのスタックだった。
 
+なお、本文中の現地写真は `img` に追加された写真のEXIF時刻をもとに対応するセッションを推定して差し込んでいる。EXIF時刻はJST相当で記録されていたため、San Francisco 現地時刻（PDT）へ変換してセッション表と照合した。
+
 ## 今年の主役は LangSmith だった
 
 LangChain という名前からは、どうしても framework や agent harness の会社という印象を持ちやすい。しかし、今回の発表を見ていて強く感じたのは、LangChain がかなり明確に LangSmith を production agent の中核に据えているということだ。
 
 LangSmith はもはや単なる observability ツールではない。agent の traces を集め、eval を回し、問題を見つけ、修正案を作り、再発防止の evaluator や dataset examples までつなげる。開発、評価、運用、改善をつなぐ production loop の中心になろうとしている。
+
+![Day 1 Keynote: Agent Development Lifecycle](img/IMG_3845.JPG)
+
+*Day 1 Keynote。EXIF時刻から、現地 2026-05-13 09:45 の Keynote 中に撮影された Agent Development Lifecycle のスライドと判断した。*
 
 この流れを支えるために、LangSmith 側では大きく3つの発表があった。
 
@@ -25,6 +31,10 @@ LangSmith はもはや単なる observability ツールではない。agent の 
 3つ目は `LangSmith Sandboxes`。agent が生成したコードを安全に実行するための隔離環境だ。agent が code を書き、CLI を実行し、データを加工するようになるほど、local machine や production infrastructure に直接触らせるわけにはいかない。そこで、filesystem、network、resource usage、credential exposure を制御できる sandbox が必要になる。
 
 この3つは、それぞれ「観測する」「蓄積する」「安全に実行する」という役割を持つ。合わせて見ると、LangSmith が production agent の運用基盤としてかなり本気で作られていることが分かる。
+
+![Day 1 Keynote: Introducing LangSmith Engine](img/IMG_3849.JPG)
+
+*Day 1 Keynote での LangSmith Engine 紹介。現地時刻では 2026-05-13 10:21 頃の撮影。*
 
 ## 7つの発表は1つのスタックとして見ると分かりやすい
 
@@ -72,6 +82,10 @@ flowchart TB
 
 つまり、LangChain が今回示したのは、単なる agent framework の拡張ではない。エージェントの production lifecycle 全体を回すための platform である。
 
+![Day 2 Keynote: agent development lifecycle](img/IMG_3852.JPG)
+
+*Day 2 Keynote。classical machine learning と agent development lifecycle を対応づけるスライド。EXIF時刻から、現地 2026-05-14 09:46 頃の撮影と判断した。*
+
 ## Deep Agents は「長時間・複雑タスク」のための harness へ
 
 今回のもう1つの軸は Deep Agents だった。
@@ -107,9 +121,15 @@ Cisco セッションでは、SmithDB が object storage、compute / storage sep
 
 SmithDB が重要なのは、単に LangSmith の画面が速くなるからではない。LangSmith Engine のような改善 loop は、大量の production traces を入力にする。つまり、agent を本番で育てるには、まず traces をちゃんと蓄積し、検索し、比較し、分析できる必要がある。SmithDB はその土台である。
 
-## Toyota、Lyft、Chime が示した production agent の現実
+## Etsy、Toyota、Lyft、Chime が示した production agent の現実
 
 今回のセッション群で印象的だったのは、どの事例も「agent をどう作ったか」だけでは終わらなかったことだ。むしろ、どう運用し、どう評価し、どう組織に組み込むかが中心だった。
+
+Etsy の `The Etsy Gifting Assistant: From Prototype to Production` では、gift discovery という具体的な consumer experience に agent をどう組み込むかが扱われた。追加された書き起こしと写真からは、Etsy が既存の marketplace 文脈、buyer / seller / item の関係、検索・推薦の体験を前提に、prototype から production へ進める難しさを語っていたことが分かる。Derrick Kondo 氏の関連リポジトリとして、[agent-tackle-box](https://github.com/dkondo/agent-tackle-box) も参照に加えている。
+
+![The Etsy Gifting Assistant](img/IMG_3855.JPG)
+
+*Day 2「The Etsy Gifting Assistant」。EXIF時刻から、現地 2026-05-14 10:51 頃のセッション中に撮影されたものと判断した。*
 
 Toyota の `The Production System for Agents` は、その象徴だった。Toyota では、個別チームがばらばらに chatbot を作るのではなく、共通 platform、security / integration layer、MCP-compatible tool layer、enterprise skills library によって agent を構築する。初期には1つの agent 構築に6人の engineer と6か月が必要だったが、platform 化により4日程度で構築できるようになったと説明されていた。
 
@@ -129,6 +149,27 @@ Chime の `Make Legal Write Your Evals` では、legal / compliance team と共�
 具体的には、risk を domain / category / concrete risk に分解し、legal team が prohibited content、legal basis、allowed alternatives、example questions を定義する。その structured risk definition から dataset と judge prompt を生成し、engineer、compliance、executive が同じ taxonomy で品質を見られるようにする。
 
 これらの事例はどれも、agent の本番運用が software engineering、platform engineering、ML evaluation、domain governance の交差点にあることを示していた。
+
+![Agents in the Enterprise](img/IMG_3862.JPG)
+
+*Day 2「Agents in the Enterprise」。現地 2026-05-14 13:34 頃の fireside chat と判断した。enterprise adoption では、技術だけでなく既存組織への組み込み方が大きな論点になる。*
+
+## 写真とセッションの対応
+
+EXIF時刻から推定した写真とセッションの対応は以下の通り。JST相当で記録されていた撮影時刻をPDTへ変換し、公式タイムテーブルと `sessions` に追加された動画・書き起こし名で照合した。
+
+| 推定セッション | 現地時刻（PDT） | 写真 |
+| --- | --- | --- |
+| Day 1 Keynote | 2026-05-13 09:45-10:21 | [IMG_3845.JPG](img/IMG_3845.JPG), [IMG_3846.JPG](img/IMG_3846.JPG), [IMG_3847.JPG](img/IMG_3847.JPG), [IMG_3848.JPG](img/IMG_3848.JPG), [IMG_3849.JPG](img/IMG_3849.JPG) |
+| Day 2 Keynote | 2026-05-14 09:46-09:49 | [IMG_3852.JPG](img/IMG_3852.JPG), [IMG_3853.JPG](img/IMG_3853.JPG) |
+| Observing and Testing CX Agents | 2026-05-14 10:03 | [IMG_3854.JPG](img/IMG_3854.JPG) |
+| The Etsy Gifting Assistant | 2026-05-14 10:51 | [IMG_3855.JPG](img/IMG_3855.JPG) |
+| 60% Faster Time-to-Interview | 2026-05-14 11:12 | [IMG_3856.JPG](img/IMG_3856.JPG) |
+| Future of AI Agents | 2026-05-14 13:01-13:02 | [IMG_3857.JPG](img/IMG_3857.JPG), [IMG_3858.JPG](img/IMG_3858.JPG), [IMG_3859.JPG](img/IMG_3859.JPG), [IMG_3860.JPG](img/IMG_3860.JPG), [IMG_3861.JPG](img/IMG_3861.JPG) |
+| Agents in the Enterprise | 2026-05-14 13:34 | [IMG_3862.JPG](img/IMG_3862.JPG) |
+| Building AI for Healthcare | 2026-05-14 14:05-14:21 | [IMG_3863.JPG](img/IMG_3863.JPG), [IMG_3864.JPG](img/IMG_3864.JPG), [IMG_3865.JPG](img/IMG_3865.JPG), [IMG_3866.JPG](img/IMG_3866.JPG), [IMG_3867.JPG](img/IMG_3867.JPG), [IMG_3868.JPG](img/IMG_3868.JPG), [IMG_3869.JPG](img/IMG_3869.JPG), [IMG_3870.JPG](img/IMG_3870.JPG), [IMG_3871.JPG](img/IMG_3871.JPG), [IMG_3872.JPG](img/IMG_3872.JPG), [IMG_3873.JPG](img/IMG_3873.JPG), [IMG_3874.JPG](img/IMG_3874.JPG), [IMG_3875.JPG](img/IMG_3875.JPG), [IMG_3876.JPG](img/IMG_3876.JPG), [IMG_3877.jpeg](img/IMG_3877.jpeg), [IMG_3879.JPG](img/IMG_3879.JPG), [IMG_3880.JPG](img/IMG_3880.JPG) |
+| Break / hallway | 2026-05-14 14:47 | [IMG_3881.JPG](img/IMG_3881.JPG) |
+| The Return of the Data Scientist | 2026-05-14 15:52 | [IMG_3882.jpeg](img/IMG_3882.jpeg) |
 
 ## 現地の熱量と、LangChain community の温度感
 
@@ -189,3 +230,7 @@ AIエージェントは、作って終わりではない。作った後に観測
 - [sessions/make-legal-write-your-evals.md](sessions/make-legal-write-your-evals.md)
 - [sessions/introducing-managed-deep-agents.md](sessions/introducing-managed-deep-agents.md)
 - [sessions/how-we-built-it.md](sessions/how-we-built-it.md)
+- [dkondo/agent-tackle-box](https://github.com/dkondo/agent-tackle-box)
+- [sessions/The Etsy Gifting Assistant_original.txt](sessions/The%20Etsy%20Gifting%20Assistant_original.txt)
+- [sessions/Agents in the Enterprise_original.txt](sessions/Agents%20in%20the%20Enterprise_original.txt)
+- [sessions/Building AI for Healthcare_original.txt](sessions/Building%20AI%20for%20Healthcare_original.txt)

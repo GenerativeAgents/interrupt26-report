@@ -191,6 +191,64 @@
       margin-top: 0;
     }
 
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .photo-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .photo-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      background: #eef1ec;
+    }
+
+    .photo-card figcaption {
+      padding: 12px 14px 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--green);
+      font-size: 13px;
+      text-transform: uppercase;
+      background: #f0f5f1;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
     .callout {
       background: #fff8e8;
       border: 1px solid #e6c985;
@@ -218,7 +276,8 @@
 
     @media (max-width: 760px) {
       .summary,
-      .grid {
+      .grid,
+      .photo-grid {
         grid-template-columns: 1fr;
       }
 
@@ -251,12 +310,56 @@
       <h2>エグゼクティブサマリー</h2>
       <p>LangChain Interrupt 2026 の中心メッセージは、agent はリリースして終わりではなく、trace、eval、feedback、memory、skills、tools を通じて育て続ける対象だということだった。通常のソフトウェアと比べ、agent はモデル、ツール、プロンプト、コンテキスト、外部環境の変化で挙動が変わりやすい。そのため、本番投入後に何が起きたかを観測し、問題を発見し、修正し、再発を防ぐ継続的な仕組みが必要になる。</p>
       <p>Keynote で発表された LangSmith Engine、SmithDB、LangSmith Sandboxes、Managed Deep Agents、LLM Gateway、Context Hub、Deep Agents 0.6 は、個別機能ではなく production agent のライフサイクルを支えるスタックとして見ると理解しやすい。</p>
+      <p>現地写真は、追加された <code>img</code> 配下の写真のEXIF時刻をもとにセッションへ対応づけた。EXIF時刻はJST相当で記録されていたため、San Francisco 現地時刻（PDT）へ変換して公式タイムテーブルと <code>sessions</code> の動画・書き起こし名で照合している。</p>
       <div class="summary">
         <div class="metric"><strong>7</strong><span>主要リリーストピック</span></div>
         <div class="metric"><strong>8</strong><span>Day 1 セッション要約</span></div>
         <div class="metric"><strong>57分</strong><span>レポート配信の書き起こし</span></div>
         <div class="metric"><strong>1,000+</strong><span>公式サイト上の参加規模</span></div>
       </div>
+    </section>
+
+    <section>
+      <h2>現地写真で見るセッション</h2>
+      <div class="photo-grid">
+        <figure class="photo-card">
+          <img src="img/IMG_3845.JPG" alt="Day 1 Keynote Agent Development Lifecycle">
+          <figcaption>Day 1 Keynote。現地 2026-05-13 09:45 頃、Agent Development Lifecycle のスライド。</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="img/IMG_3849.JPG" alt="Introducing LangSmith Engine">
+          <figcaption>Day 1 Keynote。現地 2026-05-13 10:21 頃、LangSmith Engine の紹介。</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="img/IMG_3852.JPG" alt="Day 2 Keynote agent development lifecycle">
+          <figcaption>Day 2 Keynote。現地 2026-05-14 09:46 頃、classical ML と agent development lifecycle の比較。</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="img/IMG_3855.JPG" alt="The Etsy Gifting Assistant">
+          <figcaption>Day 2「The Etsy Gifting Assistant」。現地 2026-05-14 10:51 頃、Etsy の consumer experience への agent 導入事例。</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="img/IMG_3862.JPG" alt="Agents in the Enterprise">
+          <figcaption>Day 2「Agents in the Enterprise」。現地 2026-05-14 13:34 頃、enterprise adoption をめぐる fireside chat。</figcaption>
+        </figure>
+      </div>
+      <table>
+        <thead>
+          <tr><th>推定セッション</th><th>現地時刻（PDT）</th><th>写真</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Day 1 Keynote</td><td>2026-05-13 09:45-10:21</td><td>IMG_3845-IMG_3849</td></tr>
+          <tr><td>Day 2 Keynote</td><td>2026-05-14 09:46-09:49</td><td>IMG_3852-IMG_3853</td></tr>
+          <tr><td>Observing and Testing CX Agents</td><td>2026-05-14 10:03</td><td>IMG_3854</td></tr>
+          <tr><td>The Etsy Gifting Assistant</td><td>2026-05-14 10:51</td><td>IMG_3855</td></tr>
+          <tr><td>60% Faster Time-to-Interview</td><td>2026-05-14 11:12</td><td>IMG_3856</td></tr>
+          <tr><td>Future of AI Agents</td><td>2026-05-14 13:01-13:02</td><td>IMG_3857-IMG_3861</td></tr>
+          <tr><td>Agents in the Enterprise</td><td>2026-05-14 13:34</td><td>IMG_3862</td></tr>
+          <tr><td>Building AI for Healthcare</td><td>2026-05-14 14:05-14:21</td><td>IMG_3863-IMG_3880</td></tr>
+          <tr><td>Break / hallway</td><td>2026-05-14 14:47</td><td>IMG_3881</td></tr>
+          <tr><td>The Return of the Data Scientist</td><td>2026-05-14 15:52</td><td>IMG_3882</td></tr>
+        </tbody>
+      </table>
     </section>
 
     <section>
@@ -380,6 +483,10 @@
         <li><a href="sessions/make-legal-write-your-evals.md">make-legal-write-your-evals.md</a></li>
         <li><a href="sessions/introducing-managed-deep-agents.md">introducing-managed-deep-agents.md</a></li>
         <li><a href="sessions/how-we-built-it.md">how-we-built-it.md</a></li>
+        <li><a href="https://github.com/dkondo/agent-tackle-box">dkondo/agent-tackle-box</a></li>
+        <li><a href="sessions/The%20Etsy%20Gifting%20Assistant_original.txt">The Etsy Gifting Assistant_original.txt</a></li>
+        <li><a href="sessions/Agents%20in%20the%20Enterprise_original.txt">Agents in the Enterprise_original.txt</a></li>
+        <li><a href="sessions/Building%20AI%20for%20Healthcare_original.txt">Building AI for Healthcare_original.txt</a></li>
       </ul>
     </section>
   </main>
