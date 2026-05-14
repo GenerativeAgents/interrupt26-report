@@ -257,3 +257,13 @@ Deep Agents は、長時間・複雑な task を扱う agent harness。LangChain
 - https://www.langchain.com/blog/open-models-have-crossed-a-threshold
 - https://www.langchain.com/blog/how-we-built-langchains-gtm-agent
 - https://pypi.org/project/deepagents/
+
+## その他トピック
+
+### FDE についてのディスカッション
+
+LangChain における FDE の必要性について議論した。AI エージェントの開発・運用を自社で行うケイパビリティを持つ企業と、そうではない企業の 2 種類に分かれていくという見立てがある。
+
+FDE が特に必要になるのは、AI エージェント開発・運用のケイパビリティをまだ持っていない Non-AI な企業に LangChain / LangSmith を導入する場面だと認識している。単にツールを提供するだけではなく、ユースケースの発見、agent workflow の設計、eval / observability / deployment の運用設計、社内チームへの移管まで伴走する役割が重要になる。
+
+一方で、この FDE を大々的な採用方針として打ち出すかどうかは、まだ決めかねている。導入支援の必要性は高いが、それを組織戦略としてどの程度前面に出すかは、今後の顧客層、プロダクト成熟度、partner ecosystem との役割分担を見ながら判断する段階。
