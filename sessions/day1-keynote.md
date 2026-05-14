@@ -6,6 +6,28 @@
 - 音声: [Day1 keynote.m4a](Day1%20keynote.m4a)
 - 文字起こし: [Day1 keynote_original.txt](Day1%20keynote_original.txt)
 
+## 写真
+
+![Day 1 Keynote: Agent Development Lifecycle](../img/IMG_3845.JPG)
+
+*09:45 PDT 頃。Agent Development Lifecycle のスライド。*
+
+![Day 1 Keynote](../img/IMG_3846.JPG)
+
+*09:58 PDT 頃。Keynote 中の発表スライド。*
+
+![Day 1 Keynote](../img/IMG_3847.JPG)
+
+*10:01 PDT 頃。Keynote 中の発表スライド。*
+
+![Day 1 Keynote](../img/IMG_3848.JPG)
+
+*10:02 PDT 頃。Keynote 中の発表スライド。*
+
+![Day 1 Keynote: Introducing LangSmith Engine](../img/IMG_3849.JPG)
+
+*10:21 PDT 頃。LangSmith Engine の紹介。*
+
 ## 要約
 
 Day 1 keynote は、LangChain が考える agent development lifecycle の全体像と、それを支える新機能群の発表が中心だった。Harrison Chase は、agent は自然言語・画像・音声など巨大な入力空間を扱い、出力も非決定的であるため、従来の software development lifecycle とは異なる反復サイクルが必要だと説明した。

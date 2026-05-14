@@ -6,6 +6,16 @@
 - 音声: [Day2 keynote.m4a](Day2%20keynote.m4a), [Day2 keynote 2.m4a](Day2%20keynote%202.m4a)
 - 文字起こし: [Day2 keynote_original.txt](Day2%20keynote_original.txt), [Day2 keynote 2_original.txt](Day2%20keynote%202_original.txt)
 
+## 写真
+
+![Day 2 Keynote: agent development lifecycle](../img/IMG_3852.JPG)
+
+*09:46 PDT 頃。classical machine learning と agent development lifecycle の比較。*
+
+![Day 2 Keynote](../img/IMG_3853.JPG)
+
+*09:49 PDT 頃。Day 2 Keynote 中の発表スライド。*
+
 ## 要約
 
 Day 2 keynote は、Interrupt 2027 でどのような論点が中心になるかを先取りする形で、agent の今後の方向性を整理する内容だった。Harrison Chase は、agent が大きく2つの方向へ分岐していくと説明した。1つは、分単位・時間単位、将来的には日単位で動く long-horizon agents。もう1つは、customer support や sales のように latency、brand experience、voice interface が重要になる customer experience agents である。

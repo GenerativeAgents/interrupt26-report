@@ -7,6 +7,12 @@
 - 文字起こし: [The Etsy Gifting Assistant_original.txt](The%20Etsy%20Gifting%20Assistant_original.txt)
 - 関連リンク: [dkondo/agent-tackle-box](https://github.com/dkondo/agent-tackle-box)
 
+## 写真
+
+![The Etsy Gifting Assistant](../img/IMG_3855.JPG)
+
+*10:51 PDT 頃。The Etsy Gifting Assistant セッション中の写真。*
+
 ## 要約
 
 Etsy のセッションは、gift discovery という consumer experience に agent を入れる事例だった。Etsy は handcrafted / vintage items を扱う marketplace であり、商品情報は structured catalog だけではなく、seller が書いた説明、画像、視覚的な特徴、文脈に依存する。特に gift search は、買い手が「誰に贈るか」は分かっていても「何を贈るか」は明確でないことが多く、会話しながら意図を明確にしていく agent と相性がよい。

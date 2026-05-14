@@ -6,6 +6,12 @@
 - 音声: [Agents in the Enterprise.m4a](Agents%20in%20the%20Enterprise.m4a)
 - 文字起こし: [Agents in the Enterprise_original.txt](Agents%20in%20the%20Enterprise_original.txt)
 
+## 写真
+
+![Agents in the Enterprise](../img/IMG_3862.JPG)
+
+*13:34 PDT 頃。Chirantan (CJ) Desai 氏と Harrison Chase 氏の fireside chat。*
+
 ## 要約
 
 この fireside chat は、MongoDB の Chirantan (CJ) Desai と Harrison Chase による enterprise adoption の議論だった。MongoDB は open source database company としての出自、document model、scale-out architecture、unstructured data、native search / vector search といった特徴を持ち、AI時代の data layer として agentic applications と相性がよい、という話から始まった。

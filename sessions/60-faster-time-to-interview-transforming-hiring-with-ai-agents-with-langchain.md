@@ -6,6 +6,12 @@
 - 音声: [60_ Faster Time-to-Interview.m4a](60_%20Faster%20Time-to-Interview.m4a)
 - 文字起こし: [60_ Faster Time-to-Interview_original.txt](60_%20Faster%20Time-to-Interview_original.txt)
 
+## 写真
+
+![60% Faster Time-to-Interview](../img/IMG_3856.JPG)
+
+*11:12 PDT 頃。60% Faster Time-to-Interview セッション中の写真。*
+
 ## 要約
 
 このセッションは、採用プロセスに agent を組み込み、time-to-interview を短縮する取り組みについての事例だった。自動書き起こしにはノイズが多いが、主題としては hiring manager が job description、requirements、candidate review、outreach、feedback を繰り返すプロセスを agentic workflow として扱い、候補者対応の速度を上げることが語られていた。

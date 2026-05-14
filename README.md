@@ -42,7 +42,7 @@
 
 | 時間 | セッション | 登壇者 |
 | --- | --- | --- |
-| 8:00 AM-9:30 AM | Registration, Breakfast & Sponsors | - |
+| 8:00 AM-9:30 AM | [Registration, Breakfast & Sponsors](sessions/day1-registration-breakfast-sponsors.md) | - |
 | 9:30 AM-10:30 AM | [Keynote](sessions/day1-keynote.md) | Harrison Chase, Ankush Gola |
 | 10:30 AM-10:50 AM | [Building Frontier CX Agents](sessions/building-frontier-cx-agents.md) | Carlos Pereira |
 | 10:50 AM-11:20 AM | Break | - |

@@ -6,6 +6,12 @@
 - 音声: [Observing and Testing CX Agents.m4a](Observing%20and%20Testing%20CX%20Agents.m4a)
 - 文字起こし: [Observing and Testing CX Agents_original.txt](Observing%20and%20Testing%20CX%20Agents_original.txt)
 
+## 写真
+
+![Observing and Testing CX Agents](../img/IMG_3854.JPG)
+
+*10:03 PDT 頃。Observing and Testing CX Agents セッション中の写真。*
+
 ## 要約
 
 このセッションは、Cisco の customer experience / support 領域で agent を本番運用する際に、production feedback をどのように観測し、テストへ戻していくかを扱っていた。前日の Cisco セッションが agent teammate の全体像や SmithDB の背景を語っていたのに対し、Day 2 では運用中の signal を改善 loop に変える方法に焦点があった。

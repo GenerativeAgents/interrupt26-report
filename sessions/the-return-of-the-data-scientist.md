@@ -8,6 +8,12 @@
 - 参考写真: [IMG_3882.jpeg](../img/IMG_3882.jpeg)
 - 公式agenda: [Interrupt 2026 event agenda](https://interrupt.langchain.com/event-agenda)
 
+## 写真
+
+![The Return of the Data Scientist](../img/IMG_3882.jpeg)
+
+*15:52 PDT 頃。The Return of the Data Scientist セッション中の写真。*
+
 ## メモ
 
 現時点の `sessions` 配下には、このセッションに対応する音声・書き起こしが見当たらない。ただし、`img/IMG_3882.jpeg` のEXIF時刻は現地 2026-05-14 15:52 頃に相当するため、このセッション中の写真と判断している。

@@ -6,6 +6,28 @@
 - 音声: [Future of AI Agents.m4a](Future%20of%20AI%20Agents.m4a)
 - 文字起こし: [Future of AI Agents_original.txt](Future%20of%20AI%20Agents_original.txt)
 
+## 写真
+
+![Future of AI Agents](../img/IMG_3857.JPG)
+
+*13:01 PDT 頃。Future of AI Agents セッション中の写真。*
+
+![Future of AI Agents](../img/IMG_3858.JPG)
+
+*13:02 PDT 頃。Andrew Ng 氏と Harrison Chase 氏の fireside chat。*
+
+![Future of AI Agents](../img/IMG_3859.JPG)
+
+*13:02 PDT 頃。Future of AI Agents セッション中の写真。*
+
+![Future of AI Agents](../img/IMG_3860.JPG)
+
+*13:02 PDT 頃。Future of AI Agents セッション中の写真。*
+
+![Future of AI Agents](../img/IMG_3861.JPG)
+
+*13:02 PDT 頃。Future of AI Agents セッション中の写真。*
+
 ## 要約
 
 この fireside chat は、AI agents が software engineering、workflow design、education、enterprise adoption にどのような変化をもたらすかを議論する内容だった。自動書き起こしにはかなりノイズがあるが、議論の中心は、AI が単なる効率化ツールではなく、業務プロセスそのものの再設計を促すという点にあった。
