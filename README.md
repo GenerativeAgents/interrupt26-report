@@ -86,7 +86,7 @@
 
 1. ✅ LangSmith Engine
 2. ✅ SmithDB
-3. ✅ Sandboxes
+3. ✅ LangSmith Sandboxes
 4. ✅ Managed Deep Agents
 5. ✅ LLM Gateway
 6. ✅ Context Hub
@@ -101,7 +101,7 @@ flowchart TB
   DA["Deep Agents 0.6<br/>agent harness / runtime pattern"]
   MDA["Managed Deep Agents<br/>production API / hosted runtime"]
   CH["Context Hub<br/>instructions / skills / memory-like context"]
-  SB["Sandboxes<br/>secure code execution"]
+  SB["LangSmith Sandboxes<br/>secure code execution"]
   GW["LLM Gateway<br/>cost / auth / data guardrails"]
   SDB["SmithDB<br/>trace observability data layer"]
   ENG["LangSmith Engine<br/>detect / diagnose / fix / eval loop"]
@@ -124,13 +124,13 @@ flowchart TB
 
 - `Deep Agents 0.6` は agent harness の中核。planning、filesystem / code interpreter、subagents、streaming など、複雑な task を解く agent の実行モデルを提供する。
 - `Context Hub` は agent が読む instructions、skills、knowledge、memory-like context を versioning する供給源。Deep Agents / Managed Deep Agents に対して「何を知って動くか」を渡す。
-- `Sandboxes` は agent が安全に code を書き、実行し、data を操作するための execution environment。Deep Agents の能力を production で使うための安全な手足になる。
+- `LangSmith Sandboxes` は agent が安全に code を書き、実行し、data を操作するための execution environment。Deep Agents の能力を production で使うための安全な手足になる。
 - `LLM Gateway` は model 呼び出しの governance layer。cost visibility、spend limits、auth、PII / secrets guardrails を通じて、agent の LLM 利用を enterprise-ready にする。
-- `Managed Deep Agents` は Deep Agents harness、Context Hub、Sandboxes、LLM Gateway、MCP tools などをまとめ、production API / hosted runtime として提供する層。
+- `Managed Deep Agents` は Deep Agents harness、Context Hub、LangSmith Sandboxes、LLM Gateway、MCP tools などをまとめ、production API / hosted runtime として提供する層。
 - `SmithDB` は LangSmith traces / datasets / comparison views を支える observability data layer。大量・深い・multimodal な agent traces を高速に検索・分析できる土台。
 - `LangSmith Engine` は SmithDB / traces を入力に、issue detection、diagnosis、fix proposal、eval / dataset generation まで回す改善 loop。改善結果は prompts、skills、code、evals に戻り、Context Hub や agent harness 側へ反映される。
 
-つまり、下から順に見ると `Context Hub / Sandboxes / LLM Gateway` が agent の context・execution・governance を支え、`Deep Agents 0.6 / Managed Deep Agents` が production agent runtime を作り、`SmithDB` が実行結果を観測可能にし、`LangSmith Engine` がその観測結果から改善を自動化する、という構造になっている。
+つまり、下から順に見ると `Context Hub / LangSmith Sandboxes / LLM Gateway` が agent の context・execution・governance を支え、`Deep Agents 0.6 / Managed Deep Agents` が production agent runtime を作り、`SmithDB` が実行結果を観測可能にし、`LangSmith Engine` がその観測結果から改善を自動化する、という構造になっている。
 
 ### 1. LangSmith Engine
 
@@ -146,7 +146,7 @@ LangSmith Engine は、LangSmith の trace を起点に agent の継続改善ル
 セッション補足:
 
 - `How we built it` では、Engine の初期課題として「意味のある issue を見つけ、actionable な単位へ蒸留すること」が重要だと説明されていた。単に trace から問題を大量に見つけるのではなく、修正対象として扱える粒度に落とし込む設計がポイント。
-- Engine は LangChain 製品群を組み合わせて動いており、Deep Agents、Sandboxes、LangSmith Deployment を使いながら、production trace と agent source code を入力にして問題診断・修正案生成へつなげる。
+- Engine は LangChain 製品群を組み合わせて動いており、Deep Agents、LangSmith Sandboxes、LangSmith Deployment を使いながら、production trace と agent source code を入力にして問題診断・修正案生成へつなげる。
 - trace は「本番で agent がどう振る舞ったか」を見る最重要入力として扱われ、必要に応じて condensed / summarized trace を使って調査する構成になっている。
 - 公式ブログ `How My Agents Self-Heal in Production` でも、deploy 後の regression detection、triage agent、Open SWE による PR 作成までを自動化する self-healing loop が紹介されており、Engine が目指す「production signal から修正へつなぐ」方向性と重なる。
 
@@ -184,7 +184,7 @@ SmithDB は、LangSmith の self-hosted changelog 上で確認できる LangSmit
 - https://datafusion.apache.org/user-guide/introduction.html
 - https://vortex.dev/
 
-### 3. Sandboxes
+### 3. LangSmith Sandboxes
 
 LangSmith Sandboxes は、agent が生成・実行するコードを安全に動かすための ephemeral で locked-down な実行環境。LLM に任意コードを実行させる場合、local machine や本番 infrastructure に直接触らせるのは危険なので、sandbox 側で filesystem、network、resource usage、実行可能 binary などを制御する。LangSmith SDK から利用でき、LangSmith Deployment や Deep Agents とも統合される。
 
@@ -199,7 +199,7 @@ LangSmith Sandboxes は、agent が生成・実行するコードを安全に動
 
 - `Day1 keynote` では LangSmith Sandboxes の一般提供が発表され、agent が code を読み書き・実行して data manipulation や CLI 操作を行うための重要な execution environment として紹介された。
 - sandbox は 1 秒未満で起動でき、interaction をまたいだ persistence、snapshot / restore、auth proxy を備えると説明されていた。
-- `Introducing Managed Deep Agents` では、研究 agent であっても統計処理や report への反映などで code execution が必要になり、ほぼすべての agent が coding-agent 的な能力を必要としつつある、という文脈で Sandboxes が説明された。
+- `Introducing Managed Deep Agents` では、研究 agent であっても統計処理や report への反映などで code execution が必要になり、ほぼすべての agent が coding-agent 的な能力を必要としつつある、という文脈で LangSmith Sandboxes が説明された。
 - sandbox credential injection は agent 本体や sandbox environment に重要な environment variables を露出させないための機能として触れられていた。
 
 参考:
@@ -208,7 +208,7 @@ LangSmith Sandboxes は、agent が生成・実行するコードを安全に動
 
 ### 4. Managed Deep Agents
 
-Managed Deep Agents に相当する発表として、LangChain は `deepagents deploy` を beta として紹介している。これは Deep Agents harness を production-ready な server として立ち上げる仕組みで、model、instructions、tools、skills、sandboxes をまとめてデプロイできる。Claude Managed Agents との比較では、Deep Agents は open source / model-agnostic で、memory を標準形式で所有・照会できる点が強調されている。
+Managed Deep Agents に相当する発表として、LangChain は `deepagents deploy` を beta として紹介している。これは Deep Agents harness を production-ready な server として立ち上げる仕組みで、model、instructions、tools、skills、LangSmith Sandboxes をまとめてデプロイできる。Claude Managed Agents との比較では、Deep Agents は open source / model-agnostic で、memory を標準形式で所有・照会できる点が強調されている。
 
 ポイント:
 
@@ -220,7 +220,7 @@ Managed Deep Agents に相当する発表として、LangChain は `deepagents d
 セッション補足:
 
 - `Introducing Managed Deep Agents` では、Managed Deep Agents は private beta として紹介され、prototype / working agent を production に持っていくためのまとめ役として説明されていた。
-- 構成要素は大きく、Deep Agents harness、production runtime、Context Hub integration、Sandboxes の 4 本柱として説明されていた。
+- 構成要素は大きく、Deep Agents harness、production runtime、Context Hub integration、LangSmith Sandboxes の 4 本柱として説明されていた。
 - runtime は LangSmith Deployment 上に構築され、agent の create / update / invoke、horizontal scaling、durable checkpoint、resume / replay、human-in-the-loop を支える。
 - production では inbound user auth、agent から外部サービスへの outbound auth、agent の作成・更新権限、interoperability が重要になる、という運用面の話も補足されていた。
 

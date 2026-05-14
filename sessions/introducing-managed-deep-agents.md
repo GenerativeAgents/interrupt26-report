@@ -14,7 +14,7 @@ Deep Agents の主要能力は、execution environment、context management、de
 
 delegation では planning tool と subagents が紹介された。subagents は isolated context で動き、main agent の context を汚さず、task を parallelize できる。steering では approval、edit、reject、response request などの human-in-the-loop decision pattern が紹介された。
 
-後半では Managed Deep Agents の private beta が説明された。これは Deep Agents harness、LangSmith Deployment ベースの runtime、Context Hub integration、Sandboxes をまとめ、agent creation / update / invoke、horizontal scaling、durable checkpoint / resume / replay、auth、MCP / A2A interoperability、context promotion、sandbox credential injection / snapshot restore を production-ready にするもの。
+後半では Managed Deep Agents の private beta が説明された。これは Deep Agents harness、LangSmith Deployment ベースの runtime、Context Hub integration、LangSmith Sandboxes をまとめ、agent creation / update / invoke、horizontal scaling、durable checkpoint / resume / replay、auth、MCP / A2A interoperability、context promotion、sandbox credential injection / snapshot restore を production-ready にするもの。
 
 ## 重要ポイント
 
@@ -23,4 +23,4 @@ delegation では planning tool と subagents が紹介された。subagents は
 - subagents は isolated context と parallelization に有効。
 - Managed Deep Agents は Deep Agents を production runtime として提供する private beta。
 - LangSmith Deployment により scaling、checkpoint、resume、human-in-the-loop を支える。
-- Context Hub と Sandboxes が Managed Deep Agents の重要な構成要素。
+- Context Hub と LangSmith Sandboxes が Managed Deep Agents の重要な構成要素。
