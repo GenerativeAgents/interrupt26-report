@@ -1,4 +1,20 @@
-# LangChain Interrupt 2026 現地レポート
+<h1 align="center">
+  <img src="img/header.png" alt="LangChain Interrupt 2026 現地レポート" width="100%">
+  <br>
+  LangChain Interrupt 2026 現地レポート
+  <br>
+  <br>
+</h1>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/WHEN-MAY%2013--14TH%2C%202026-00C853?style=for-the-badge" alt="WHEN = MAY 13-14TH, 2026">
+  <img src="https://img.shields.io/badge/WHERE-THE%20MIDWAY%2C%20SAN%20FRANCISCO-2962FF?style=for-the-badge" alt="WHERE = THE MIDWAY, SAN FRANCISCO">
+  <a href="https://interrupt.langchain.com/"><img src="https://img.shields.io/badge/OFFICIAL-Interrupt%202026-111111?style=for-the-badge" alt="Official site"></a>
+</p>
+
+<p align="center">
+  The Agent Conference by LangChain の現地レポート、リリーストピック、セッション要約まとめ。
+</p>
 
 ## イベント情報
 
