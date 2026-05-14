@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LangChain Interrupt 2026 レポート</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18211f;
+      --muted: #5a6965;
+      --paper: #f7f8f5;
+      --panel: #ffffff;
+      --line: #d9ded7;
+      --green: #0c8f59;
+      --blue: #2257c7;
+      --coral: #d85a3a;
+      --amber: #b46b00;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", "Segoe UI", sans-serif;
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .hero {
+      background: #101614;
+      color: white;
+      border-bottom: 1px solid #28342f;
+    }
+
+    .hero img {
+      width: 100%;
+      max-height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 40px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(34px, 6vw, 72px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 880px;
+      margin: 0;
+      color: #d7e0dc;
+      font-size: 18px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 4px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.08);
+      color: #f4f7f5;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 40px 0 72px;
+    }
+
+    section {
+      margin: 0 0 52px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 30px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 28px 0 10px;
+      font-size: 21px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 24px 0 0;
+    }
+
+    .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--green);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .layer {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 16px;
+      align-items: start;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--green);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .layer:nth-child(2n) {
+      border-left-color: var(--blue);
+    }
+
+    .layer:nth-child(3n) {
+      border-left-color: var(--coral);
+    }
+
+    .layer b {
+      font-size: 17px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .callout {
+      background: #fff8e8;
+      border: 1px solid #e6c985;
+      border-left: 6px solid var(--amber);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .summary,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .layer {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        padding-top: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <img src="img/header.png" alt="LangChain Interrupt 2026">
+    <div class="hero-inner">
+      <div class="badges">
+        <span class="badge">May 13-14, 2026</span>
+        <span class="badge">The Midway, San Francisco</span>
+        <span class="badge">The Agent Conference by LangChain</span>
+      </div>
+      <h1>LangChain Interrupt 2026 レポート</h1>
+      <p class="lead">AI agent の関心が「作れるか」から「本番でどう動かし、観測し、改善し続けるか」へ移ったことを示すイベント。セッション内容とレポート配信での議論を統合して整理した。</p>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>エグゼクティブサマリー</h2>
+      <p>LangChain Interrupt 2026 の中心メッセージは、agent はリリースして終わりではなく、trace、eval、feedback、memory、skills、tools を通じて育て続ける対象だということだった。通常のソフトウェアと比べ、agent はモデル、ツール、プロンプト、コンテキスト、外部環境の変化で挙動が変わりやすい。そのため、本番投入後に何が起きたかを観測し、問題を発見し、修正し、再発を防ぐ継続的な仕組みが必要になる。</p>
+      <p>Keynote で発表された LangSmith Engine、SmithDB、LangSmith Sandboxes、Managed Deep Agents、LLM Gateway、Context Hub、Deep Agents 0.6 は、個別機能ではなく production agent のライフサイクルを支えるスタックとして見ると理解しやすい。</p>
+      <div class="summary">
+        <div class="metric"><strong>7</strong><span>主要リリーストピック</span></div>
+        <div class="metric"><strong>8</strong><span>Day 1 セッション要約</span></div>
+        <div class="metric"><strong>57分</strong><span>レポート配信の書き起こし</span></div>
+        <div class="metric"><strong>1,000+</strong><span>公式サイト上の参加規模</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>7つの発表をスタックとして見る</h2>
+      <div class="stack">
+        <div class="layer"><b>Context Hub</b><span>agent が読む instructions、skills、knowledge、memory-like context を versioned bundle として管理する。</span></div>
+        <div class="layer"><b>LangSmith Sandboxes</b><span>agent-generated code を安全に動かす execution environment。filesystem、network、resource usage、credential exposure を制御する。</span></div>
+        <div class="layer"><b>LLM Gateway</b><span>モデル呼び出しの cost、auth、routing、PII / secrets guardrails を担う governance layer。</span></div>
+        <div class="layer"><b>Deep Agents 0.6</b><span>長時間・複雑なタスクを扱う agent harness。execution environment、context management、delegation、steering を支える。</span></div>
+        <div class="layer"><b>Managed Deep Agents</b><span>Deep Agents harness、Context Hub、LangSmith Sandboxes、MCP tools を production runtime として束ねる。</span></div>
+        <div class="layer"><b>SmithDB</b><span>大量で深い agent traces を高速に扱う LangSmith の trace observability data layer。</span></div>
+        <div class="layer"><b>LangSmith Engine</b><span>SmithDB / traces を入力に、issue detection、diagnosis、fix proposal、eval / dataset generation を回す改善 loop。</span></div>
+      </div>
+      <p>下から順に見ると、Context Hub、LangSmith Sandboxes、LLM Gateway が agent の context・execution・governance を支え、Deep Agents 0.6 / Managed Deep Agents が runtime を作る。SmithDB が実行結果を観測可能にし、LangSmith Engine がその観測結果から改善を自動化する。</p>
+    </section>
+
+    <section>
+      <h2>リリーストピックの解説</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>1. LangSmith Engine</h3>
+          <p>production traces から recurring issue を発見し、root cause、修正案、evaluator、dataset examples へつなげる改善ループ。重要なのは、問題を大量に見つけることではなく、意味があり修正可能な単位に蒸留すること。</p>
+        </article>
+        <article class="card">
+          <h3>2. SmithDB</h3>
+          <p>agent traces は深く、大きく、multi-turn / multimodal で、従来の logs / metrics と異なる。SmithDB はこの workload に特化した LangSmith のデータ基盤で、Rust、Apache DataFusion、Vortex を土台にしている。</p>
+        </article>
+        <article class="card">
+          <h3>3. LangSmith Sandboxes</h3>
+          <p>agent が生成したコードを隔離環境で実行するための基盤。1秒未満の起動、persistence、snapshot / restore、auth proxy などが紹介された。</p>
+        </article>
+        <article class="card">
+          <h3>4. Managed Deep Agents</h3>
+          <p>Deep Agents harness を production runtime として運用するための private beta。agent creation / update / invoke、horizontal scaling、checkpoint、resume、human-in-the-loop を扱う。</p>
+        </article>
+        <article class="card">
+          <h3>5. LLM Gateway</h3>
+          <p>モデル呼び出しの cost visibility、spend limits、credential management、routing を担う。将来的に frontier model、open weight model、特化モデルの使い分けが増えるほど重要になる。</p>
+        </article>
+        <article class="card">
+          <h3>6. Context Hub</h3>
+          <p>prompt だけでなく、AGENTS.md、SKILL.md、社内 knowledge を versioned context として管理する。production agent に「何を知って動くか」を安定して供給する層。</p>
+        </article>
+        <article class="card">
+          <h3>7. Deep Agents 0.6</h3>
+          <p>open models、execution environment、streaming の強化が語られた。長時間・複雑なタスクを解く harness として、subagents、filesystem、code interpreter、frontend SDK が重要になる。</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>セッション別の学び</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Keynote</h3>
+          <p>agent development lifecycle と新機能発表が中心。build / test / deploy / observe / improve を高速に回すためのスタックが示された。</p>
+        </article>
+        <article class="card">
+          <h3>Building Frontier CX Agents</h3>
+          <p>SmithDB の背景。agent trace は巨大で深く、検索・フィルタ・random access が必要なため、専用データ基盤が必要になる。</p>
+        </article>
+        <article class="card">
+          <h3>Scaling GTM Agents</h3>
+          <p>GTM agents の価値は email generation ではなく、market signal を読んだタイミングと文脈判断。durable execution、capacity management、online eval が鍵。</p>
+        </article>
+        <article class="card">
+          <h3>The Production System for Agents</h3>
+          <p>Toyota Production System を agent 開発へ移植。andon は observability、kaizen は継続改善、jidoka は human-in-the-loop、genchi genbutsu は trace に対応する。</p>
+        </article>
+        <article class="card">
+          <h3>Lyft の evals</h3>
+          <p>ユーザーをテストデータにせず、launch 前に simulator、mocked MCP data、synthetic user、rubric-based evaluator で品質ゲートを作る。</p>
+        </article>
+        <article class="card">
+          <h3>Chime の compliance evals</h3>
+          <p>legal / compliance を eval 作成に継続参加させる。risk を domain / category / concrete risk に分解し、dataset と judge prompt へ変換する。</p>
+        </article>
+        <article class="card">
+          <h3>Introducing Managed Deep Agents</h3>
+          <p>agent harness は model に right context at the right time を与える層。execution、context、delegation、steering が中心能力。</p>
+        </article>
+        <article class="card">
+          <h3>How We Built It</h3>
+          <p>LangSmith Engine の設計。production traces から issue / fix / eval / dataset をつなぐ self-healing loop をどう作るかが語られた。</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>レポート配信で語られた内容</h2>
+      <p>recap 配信では、現地の熱量と Keynote 発表の解釈が中心に語られた。会場は昨年と同じ The Midway で、参加者数は体感で昨年の約1.5倍。LangChain グッズを身につけた参加者が多く、Harrison Chase が登場すると強い歓声が起きるほど community のエンゲージメントが高かった。</p>
+      <p>日本から見る LangChain と、米国現地の LangChain community には温度差があるという指摘もあった。日本では hyperscaler や既存クラウドの文脈でAI基盤を見ることが多いが、現地では LangChain 自体に fandom 的な熱量があり、ambassador network も活発に機能している。</p>
+      <div class="callout">
+        <p><b>配信での重要な見立て:</b> agent は「開発するもの」ではなく「育てるもの」。最初の種は coding agent で素早く作れるようになってきたが、本当に大きい仕事は、リリース後に experience learning を回し、trace と eval を使って現実の業務に fit させていくことにある。</p>
+      </div>
+      <p>FDE については、AI agent の開発・運用ケイパビリティを自社に持つ企業と、持たない企業に分かれていくという見立てが共有された。Non-AI な企業に agent を導入する場合、ユースケース発見、workflow 設計、eval / observability / deployment の運用設計まで伴走する FDE 的役割は必要になる。一方で、LangChain がそれを大々的な採用方針にするかは、まだ決めかねているという印象だった。</p>
+      <p>Deep Agents については、agent のパラダイムが2つに分かれつつあるという議論があった。1つはユーザー体験を高める copilot / chatbot 型、もう1つは長時間実行して複雑なタスクを解く Deep Agents 型である。必要な実装や評価の仕組みが異なるため、両者を分けて設計する必要がある。</p>
+    </section>
+
+    <section>
+      <h2>このイベントからの示唆</h2>
+      <ul>
+        <li>production agent に必要なのは prompt engineering だけではなく、context、tools、sandbox、auth、gateway、trace storage、eval、feedback loop を含む operating system である。</li>
+        <li>agent の品質管理は offline eval と production trace の往復になる。Lyft と Chime の事例は、その両輪の重要性を示している。</li>
+        <li>enterprise adoption では FDE 的な能力が重要になる。Non-AI な企業には、platform を渡すだけでなく、導入と運用のケイパビリティ移管が必要になる。</li>
+        <li>agent infrastructure の方向性は収斂している。sandbox、gateway、managed runtime、context store、memory、filesystem-like interface、observability、eval loop は各社が似た方向に進んでいる。</li>
+        <li>LangSmith Engine が目指す issue detection、diagnosis、fix、eval generation の loop は、agent だけでなくソフトウェア全般の改善プロセスにも適用できる。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>参考ファイル</h2>
+      <ul>
+        <li><a href="README.md">README.md</a></li>
+        <li><a href="recap_0513/recap_0513_tldv_transcript.txt">recap_0513_tldv_transcript.txt</a></li>
+        <li><a href="sessions/day1-keynote.md">day1-keynote.md</a></li>
+        <li><a href="sessions/building-frontier-cx-agents.md">building-frontier-cx-agents.md</a></li>
+        <li><a href="sessions/scaling-gtm-agents.md">scaling-gtm-agents.md</a></li>
+        <li><a href="sessions/the-production-system-for-agents.md">the-production-system-for-agents.md</a></li>
+        <li><a href="sessions/how-lyft-builds-evals-that-actually-matter.md">how-lyft-builds-evals-that-actually-matter.md</a></li>
+        <li><a href="sessions/make-legal-write-your-evals.md">make-legal-write-your-evals.md</a></li>
+        <li><a href="sessions/introducing-managed-deep-agents.md">introducing-managed-deep-agents.md</a></li>
+        <li><a href="sessions/how-we-built-it.md">how-we-built-it.md</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    Generated from local repository materials for interrupt26-report.
+  </footer>
+</body>
+</html>
