@@ -1,4 +1,4 @@
-# interrupt26-report
+# LangChain Interrupt 2026 現地レポート
 
 ## イベント情報
 
