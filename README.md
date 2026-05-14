@@ -66,20 +66,20 @@
 | 時間 | セッション | 登壇者 |
 | --- | --- | --- |
 | 8:30 AM-9:30 AM | Registration, Breakfast & Sponsors | - |
-| 9:30 AM-10:00 AM | Keynote | Harrison Chase, Brace Sproul, Caroline di Vittorio |
-| 10:00 AM-10:20 AM | Observing and Testing CX Agents | Carlos Pereira |
+| 9:30 AM-10:00 AM | [Keynote](sessions/day2-keynote.md) | Harrison Chase, Brace Sproul, Caroline di Vittorio |
+| 10:00 AM-10:20 AM | [Observing and Testing CX Agents](sessions/observing-and-testing-cx-agents.md) | Carlos Pereira |
 | 10:20 AM-10:50 AM | Break | - |
 | 10:50 AM-11:10 AM | [The Etsy Gifting Assistant: From Prototype to Production](sessions/the-etsy-gifting-assistant-from-prototype-to-production.md) | Derrick Kondo |
-| 11:10 AM-11:30 AM | 60% Faster Time-to-Interview: Transforming Hiring with AI Agents with LangChain | Shang Liu, Tracy He |
-| 11:30 AM-11:40 AM | Run Untrusted Agent Code with LangSmith Sandboxes | Mukil Loganathan |
+| 11:10 AM-11:30 AM | [60% Faster Time-to-Interview: Transforming Hiring with AI Agents with LangChain](sessions/60-faster-time-to-interview-transforming-hiring-with-ai-agents-with-langchain.md) | Shang Liu, Tracy He |
+| 11:30 AM-11:40 AM | [Run Untrusted Agent Code with LangSmith Sandboxes](sessions/run-untrusted-agent-code-with-langsmith-sandboxes.md) | Mukil Loganathan |
 | 11:40 AM-1:00 PM | Lunch | - |
-| 1:00 PM-1:30 PM | Future of AI Agents | Andrew Ng, Harrison Chase |
-| 1:30 PM-2:00 PM | Agents in the Enterprise | Chirantan (CJ) Desai, Harrison Chase |
-| 2:00 PM-2:20 PM | Building AI for Healthcare | Janie Lee |
+| 1:00 PM-1:30 PM | [Future of AI Agents](sessions/future-of-ai-agents.md) | Andrew Ng, Harrison Chase |
+| 1:30 PM-2:00 PM | [Agents in the Enterprise](sessions/agents-in-the-enterprise-day2.md) | Chirantan (CJ) Desai, Harrison Chase |
+| 2:00 PM-2:20 PM | [Building AI for Healthcare](sessions/building-ai-for-healthcare.md) | Janie Lee |
 | 2:20 PM-2:50 PM | Break | - |
-| 2:50 PM-3:10 PM | Building Pat, the AI Pocket Analyst Tool | Brendan McManus, Santi Weight, Michael Ran |
-| 3:10 PM-3:30 PM | Building Developer Support Agents | Evan Kormos |
-| 3:30 PM-4:00 PM | The Return of the Data Scientist | Shreya Shankar, Hamel Husain |
+| 2:50 PM-3:10 PM | [Building Pat, the AI Pocket Analyst Tool](sessions/building-pat-the-ai-pocket-analyst-tool.md) | Brendan McManus, Santi Weight, Michael Ran |
+| 3:10 PM-3:30 PM | [Building Developer Support Agents](sessions/building-developer-support-agents.md) | Evan Kormos |
+| 3:30 PM-4:00 PM | [The Return of the Data Scientist](sessions/the-return-of-the-data-scientist.md) | Shreya Shankar, Hamel Husain |
 | 4:00 PM | Day 2 Afterparty: Sponsored by Focused | - |
 
 ## リリーストピック
