@@ -92,6 +92,46 @@
 6. ✅ Context Hub
 7. ✅ Deep Agents 0.6
 
+### スタックとしての関係性
+
+7つの発表は個別機能というより、production agent を作り、動かし、観測し、改善し続けるための縦積みのスタックとして見ると分かりやすい。
+
+```mermaid
+flowchart TB
+  DA["Deep Agents 0.6<br/>agent harness / runtime pattern"]
+  MDA["Managed Deep Agents<br/>production API / hosted runtime"]
+  CH["Context Hub<br/>instructions / skills / memory-like context"]
+  SB["Sandboxes<br/>secure code execution"]
+  GW["LLM Gateway<br/>cost / auth / data guardrails"]
+  SDB["SmithDB<br/>trace observability data layer"]
+  ENG["LangSmith Engine<br/>detect / diagnose / fix / eval loop"]
+
+  CH --> DA
+  SB --> DA
+  GW --> DA
+  DA --> MDA
+  CH --> MDA
+  SB --> MDA
+  GW --> MDA
+  MDA --> SDB
+  DA --> SDB
+  SDB --> ENG
+  ENG --> CH
+  ENG --> DA
+```
+
+読み解き:
+
+- `Deep Agents 0.6` は agent harness の中核。planning、filesystem / code interpreter、subagents、streaming など、複雑な task を解く agent の実行モデルを提供する。
+- `Context Hub` は agent が読む instructions、skills、knowledge、memory-like context を versioning する供給源。Deep Agents / Managed Deep Agents に対して「何を知って動くか」を渡す。
+- `Sandboxes` は agent が安全に code を書き、実行し、data を操作するための execution environment。Deep Agents の能力を production で使うための安全な手足になる。
+- `LLM Gateway` は model 呼び出しの governance layer。cost visibility、spend limits、auth、PII / secrets guardrails を通じて、agent の LLM 利用を enterprise-ready にする。
+- `Managed Deep Agents` は Deep Agents harness、Context Hub、Sandboxes、LLM Gateway、MCP tools などをまとめ、production API / hosted runtime として提供する層。
+- `SmithDB` は LangSmith traces / datasets / comparison views を支える observability data layer。大量・深い・multimodal な agent traces を高速に検索・分析できる土台。
+- `LangSmith Engine` は SmithDB / traces を入力に、issue detection、diagnosis、fix proposal、eval / dataset generation まで回す改善 loop。改善結果は prompts、skills、code、evals に戻り、Context Hub や agent harness 側へ反映される。
+
+つまり、下から順に見ると `Context Hub / Sandboxes / LLM Gateway` が agent の context・execution・governance を支え、`Deep Agents 0.6 / Managed Deep Agents` が production agent runtime を作り、`SmithDB` が実行結果を観測可能にし、`LangSmith Engine` がその観測結果から改善を自動化する、という構造になっている。
+
 ### 1. LangSmith Engine
 
 LangSmith Engine は、LangSmith の trace を起点に agent の継続改善ループを回すための機能。繰り返し発生する失敗を検出し、原因を診断し、修正案・回帰防止用 evaluator・offline evaluation 用の dataset examples までつなげる。GitHub repository を接続すると、Deep Agents / LangChain / LangGraph で作られた agent に対して修正 PR の提案もできる。
