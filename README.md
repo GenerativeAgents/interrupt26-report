@@ -64,7 +64,7 @@ LangSmith Engine は、LangSmith の trace を起点に agent の継続改善ル
 
 ### 2. SmithDB
 
-SmithDB は、LangSmith の self-hosted changelog 上で確認できる LangSmith backend / data layer 側の新しい基盤要素。changelog では SmithDB-backed comparison view endpoints、SmithDB shadow、ClickHouse と SmithDB の dual-write / parallel write、SmithDB operations の async retry などが言及されている。ユーザー向けの単体ブログ記事は見つからなかったが、LangSmith の trace / dataset / comparison view 周辺をより高速・堅牢にするためのデータ基盤アップデートと読める。
+SmithDB は、LangSmith の self-hosted changelog 上で確認できる LangSmith backend / data layer 側の新しい基盤要素。changelog では SmithDB-backed comparison view endpoints、SmithDB shadow、ClickHouse と SmithDB の dual-write / parallel write、SmithDB operations の async retry などが言及されている。Andrew Lamb 氏の X 投稿でも、SmithDB が Apache DataFusion でできていることが宣言されている。セッション情報では、SmithDB は Apache DataFusion と Vortex を土台にした Rust 製のデータ基盤として説明されていた。LangSmith の trace / dataset / comparison view 周辺をより高速・堅牢にするための analytical data layer と読める。
 
 ポイント:
 
@@ -72,15 +72,24 @@ SmithDB は、LangSmith の self-hosted changelog 上で確認できる LangSmit
 - ClickHouse ingestion と SmithDB dual-write / parallel write により ingestion latency を改善
 - SmithDB shadow による dataset view の filtering / querying を強化
 - SmithDB operation の async retry / error handling を追加
+- Apache DataFusion を query engine として利用し、Rust / Apache Arrow ベースの高速な analytical query execution を活用
+- Vortex のような extensible columnar file format と組み合わせ、trace に特化した indexing、query planning、execution plan、storage layout を追加している
 
 セッション補足:
 
-- 今回追加したセッション文字起こし内では、SmithDB 単体の詳しい説明は確認できなかった。
-- ただし `How we built it` では Engine が大量の production traces を扱い、multi-tenant orchestration と distributed task queue を通じて処理する構成が説明されていた。SmithDB はこのような trace / dataset / comparison の大規模処理を支える data layer 側の更新として位置づけられる。
+- `Cisco` セッションでは、SmithDB は trace observability のために purpose-built された基盤として説明され、以前より 6x-15x 高速になったという文脈で紹介されていた。
+- 同セッションでは、全体が Rust で書かれ、2 つの open source project を基盤にしていると説明されていた。1 つ目が Apache DataFusion、2 つ目が extensible file format の Vortex。
+- Apache DataFusion は公式ドキュメント上でも Rust 製の extensible query engine と説明され、Apache Arrow を in-memory format とし、SQL / DataFrame API、vectorized / multithreaded / streaming execution、custom data sources / functions / operators / optimizer passes などを提供する。
+- SmithDB はこの基盤の上に、trace search 向けの indexing、custom query planning / execution plans、LangSmith のデータに合わせた custom storage layouts を追加していると説明されていた。
+- `How we built it` では Engine が大量の production traces を扱い、multi-tenant orchestration と distributed task queue を通じて処理する構成が説明されていた。SmithDB はこのような trace / dataset / comparison の大規模処理を支える data layer 側の更新として位置づけられる。
 
 参考:
 
 - https://docs.langchain.com/langsmith/self-hosted-changelog
+- https://x.com/andrewlamb1111/status/2054666729456812150?s=20
+- https://datafusion.apache.org/
+- https://datafusion.apache.org/user-guide/introduction.html
+- https://vortex.dev/
 
 ### 3. Sandboxes
 
