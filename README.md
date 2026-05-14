@@ -69,7 +69,7 @@
 | 9:30 AM-10:00 AM | Keynote | Harrison Chase, Brace Sproul, Caroline di Vittorio |
 | 10:00 AM-10:20 AM | Observing and Testing CX Agents | Carlos Pereira |
 | 10:20 AM-10:50 AM | Break | - |
-| 10:50 AM-11:10 AM | The Etsy Gifting Assistant: From Prototype to Production | Derrick Kondo |
+| 10:50 AM-11:10 AM | [The Etsy Gifting Assistant: From Prototype to Production](sessions/the-etsy-gifting-assistant-from-prototype-to-production.md) | Derrick Kondo |
 | 11:10 AM-11:30 AM | 60% Faster Time-to-Interview: Transforming Hiring with AI Agents with LangChain | Shang Liu, Tracy He |
 | 11:30 AM-11:40 AM | Run Untrusted Agent Code with LangSmith Sandboxes | Mukil Loganathan |
 | 11:40 AM-1:00 PM | Lunch | - |
